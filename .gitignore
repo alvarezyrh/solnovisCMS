@@ -1,0 +1,10 @@
+# Local CMS data and credentials
+storage/*.sqlite
+storage/*.sqlite-*
+.env
+.env.*
+
+# Local/editor files
+.DS_Store
+.vscode/
+.idea/
