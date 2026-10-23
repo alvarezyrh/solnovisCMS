@@ -1,0 +1,472 @@
+<%- include('partials/site-header', { title: page.title, description: page.excerpt, activeSlug: page.slug, menuItems: menuItems, setting: setting }) %>
+<main>
+    <!-- PAGE HERO -->
+    <section class="page-hero section-wrap">
+        <p class="eyebrow"><%= setting('site_name', 'PT Solnovis Main Global') %> · Exportir Rempah Indonesia</p>
+        <h1><%= page.title %></h1>
+        <p class="page-lead"><%= page.excerpt %></p>
+    </section>
+
+    <!-- MAIN EDITORIAL CONTENT -->
+    <section class="story-section section-wrap dynamic-page-content">
+        <div class="story-art" aria-hidden="true">
+            <span class="story-art-label">LOCAL<br>ROOTS<br><i>GLOBAL<br>REACH</i></span>
+            <span class="story-art-orbit"></span>
+        </div>
+        <div class="story-copy">
+            <p class="eyebrow">Profil & Komitmen</p>
+            <h2><%= page.title %></h2>
+            <%- renderPlainContent(page.content) %>
+        </div>
+    </section>
+
+    <!-- ==================== PAGE: TENTANG KAMI (ABOUT) ==================== -->
+    <% if (page.slug === 'about') { %>
+        <section class="section-wrap" style="padding-bottom: 30px;">
+            <div class="profile-stats-bar">
+                <div class="profile-stat-item">
+                    <strong>06+</strong>
+                    <span>Komoditas Rempah Unggulan</span>
+                </div>
+                <div class="profile-stat-item">
+                    <strong>150+ MT</strong>
+                    <span>Kapasitas Pasokan Per Bulan</span>
+                </div>
+                <div class="profile-stat-item">
+                    <strong>05 Sentra</strong>
+                    <span>Kelompok Tani Binaan Jawa Barat</span>
+                </div>
+                <div class="profile-stat-item">
+                    <strong>100%</strong>
+                    <span>Lolos Standar Karantina Ekspor</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOURCING NETWORK MAP & HUBS IN WEST JAVA -->
+        <section class="regions-section">
+            <div class="section-wrap">
+                <div class="section-topline">
+                    <div>
+                        <p class="eyebrow">Jaringan Sumber Asli</p>
+                        <h2>Sentra Komoditas Rempah Jawa Barat.</h2>
+                    </div>
+                    <p class="regions-intro">Kami menghubungkan kelompok tani lokal di dataran tinggi Jawa Barat yang terkenal memiliki kesuburan tanah vulkanis ideal untuk rempah aromatik.</p>
+                </div>
+                
+                <div class="spec-grid" style="margin-top: 10px;">
+                    <div class="port-card" style="background: #fff; border: 1px solid #d8dfd4;">
+                        <strong style="color: var(--forest); font-size: 18px;">Kabupaten Garut & Sumedang</strong>
+                        <span style="color: #55635b; margin-top: 6px;">Sentra utama budidaya kapulaga putih dan hijau Jawa (Amomum compactum), serta cengkeh dataran tinggi dengan iklim sejuk dan tanah vulkanis subur.</span>
+                    </div>
+                    <div class="port-card" style="background: #fff; border: 1px solid #d8dfd4;">
+                        <strong style="color: var(--forest); font-size: 18px;">Kabupaten Sukabumi & Cianjur</strong>
+                        <span style="color: #55635b; margin-top: 6px;">Pusat pasokan pala berkualitas (ABCD sound & BWP), fuli merah alami, serta jahe gajah berukuran besar dengan serat padat dan tingkat kepedasan tinggi.</span>
+                    </div>
+                    <div class="port-card" style="background: #fff; border: 1px solid #d8dfd4;">
+                        <strong style="color: var(--forest); font-size: 18px;">Kabupaten Tasikmalaya & Ciamis</strong>
+                        <span style="color: #55635b; margin-top: 6px;">Sentra hasil kebun kemiri bulat kupas berkualitas dan rempah rimpang herbal yang dipanen secara berkala dengan metode budidaya alami.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEGALITY & QUALITY ASSURANCE -->
+        <section class="section-wrap" style="padding-block: 84px;">
+            <div class="section-heading">
+                <p class="eyebrow">Legalitas & Kepatuhan Dagang</p>
+                <h2>Kredibilitas Hukum & Fasilitas Pengolahan</h2>
+            </div>
+            <div class="advantage-grid">
+                <div class="advantage-card">
+                    <span class="adv-icon">📜</span>
+                    <h3>Legalitas Usaha Lengkap</h3>
+                    <p>PT Solnovis Main Global terdaftar resmi dengan Nomor Induk Berusaha (NIB) Perdagangan Besar Ekspor Produk Pertanian & Rempah-Rempah dari Kementerian Investasi/BKPM RI.</p>
+                </div>
+                <div class="advantage-card">
+                    <span class="adv-icon">🏭</span>
+                    <h3>Gudang & Lantai Jemur Terkontrol</h3>
+                    <p>Fasilitas pergudangan di Jawa Barat dengan lantai penjemuran higienis beralas bersih, sirkulasi udara stabil, dan bebas kontaminasi kotoran luar.</p>
+                </div>
+                <div class="advantage-card">
+                    <span class="adv-icon">🔬</span>
+                    <h3>Standarisasi Uji Laboratorium</h3>
+                    <p>Pemeriksaan kadar air (moisture meter terkalibrasi), uji kemurnian sortasi manual, dan pengujian berkala terhadap aflatoksin serta residu berbahaya.</p>
+                </div>
+                <div class="advantage-card">
+                    <span class="adv-icon">🤝</span>
+                    <h3>Kemitraan Adil Berkelanjutan</h3>
+                    <p>Kami menerapkan prinsip fair trade yang menguntungkan petani mitra, mendorong perbaikan teknik pascapanen demi konsistensi mutu jangka panjang.</p>
+                </div>
+            </div>
+        </section>
+    <% } %>
+
+    <!-- ==================== PAGE: KOMODITAS (PRODUCT) ==================== -->
+    <% if (page.slug === 'product') { %>
+        <!-- COMMODITY SPECIFICATION MATRIX -->
+        <section class="section-wrap" style="padding-bottom: 70px;">
+            <div class="section-topline">
+                <div>
+                    <p class="eyebrow">Spesifikasi Teknis Ekspor</p>
+                    <h2>Katalog Rempah Siap Pasok Internasional.</h2>
+                </div>
+                <a class="button button-primary" href="/page/contact">Minta Kuotasi Resmi →</a>
+            </div>
+
+            <div class="spec-grid">
+                <!-- 1. Kapulaga Jawa -->
+                <article class="spec-card">
+                    <div class="spec-card-media">
+                        <img class="spec-card-image" src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" alt="Kapulaga Jawa">
+                        <span class="spec-card-tag">Grade Ekspor</span>
+                        <span class="spec-card-origin">Jawa Barat</span>
+                    </div>
+                    <div class="spec-card-body">
+                        <span class="spec-card-latin">Amomum compactum</span>
+                        <h3 class="spec-card-title">Kapulaga Putih & Hijau (Cardamom)</h3>
+                        <p class="spec-card-desc">Biji kapulaga aroma aromatik pekat, kadar minyak atsiri tinggi, dikeringkan perlahan untuk menjaga keutuhan buah.</p>
+                        <table class="spec-table-mini">
+                            <tbody>
+                                <tr><td>Kadar Air</td><td>Maks. 13%</td></tr>
+                                <tr><td>Kotoran / Admixture</td><td>Maks. 1.0%</td></tr>
+                                <tr><td>Minyak Atsiri</td><td>Min. 4.0%</td></tr>
+                                <tr><td>Kapasitas Pasokan</td><td>30 MT / Bulan</td></tr>
+                                <tr><td>Kemasan Ekspor</td><td>PP Bag 25kg / Goni</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="spec-card-action">
+                            <a class="button button-primary" href="/page/contact?produk=Kapulaga">Pesan Sampel / Penawaran</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. Biji Pala & Fuli -->
+                <article class="spec-card">
+                    <div class="spec-card-media">
+                        <img class="spec-card-image" src="https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=800&q=80" alt="Pala Indonesia">
+                        <span class="spec-card-tag">ABCD Sound & SS</span>
+                        <span class="spec-card-origin">Indonesia</span>
+                    </div>
+                    <div class="spec-card-body">
+                        <span class="spec-card-latin">Myristica fragrans</span>
+                        <h3 class="spec-card-title">Biji Pala & Fuli (Nutmeg & Mace)</h3>
+                        <p class="spec-card-desc">Pala bulat utuh tanpa tempurung berkualitas suara (sound), aroma myristicin kuat, bebas jamur dan aflatoksin.</p>
+                        <table class="spec-table-mini">
+                            <tbody>
+                                <tr><td>Kadar Air</td><td>Maks. 10 - 12%</td></tr>
+                                <tr><td>Kadar Kotoran</td><td>Maks. 0.5%</td></tr>
+                                <tr><td>Aflatoksin B1+Total</td><td>Memenuhi Standar EU/US</td></tr>
+                                <tr><td>Kapasitas Pasokan</td><td>40 MT / Bulan</td></tr>
+                                <tr><td>Kemasan Ekspor</td><td>Karton 25kg / PP Bag</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="spec-card-action">
+                            <a class="button button-primary" href="/page/contact?produk=Pala">Pesan Sampel / Penawaran</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. Jahe Gajah & Kering -->
+                <article class="spec-card">
+                    <div class="spec-card-media">
+                        <img class="spec-card-image" src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80" alt="Jahe Ekspor">
+                        <span class="spec-card-tag">Fresh & Sliced</span>
+                        <span class="spec-card-origin">Jawa Barat</span>
+                    </div>
+                    <div class="spec-card-body">
+                        <span class="spec-card-latin">Zingiber officinale</span>
+                        <h3 class="spec-card-title">Jahe Gajah & Jahe Kering (Ginger)</h3>
+                        <p class="spec-card-desc">Rimpang jahe berukuran besar, padat berisi, aroma pedas khas gingerol. Tersedia segar bersih maupun kering iris.</p>
+                        <table class="spec-table-mini">
+                            <tbody>
+                                <tr><td>Kadar Air (Kering)</td><td>Maks. 11%</td></tr>
+                                <tr><td>Ukuran Segar</td><td>150g - 350g+ per rimpang</td></tr>
+                                <tr><td>Kondisi Rimpang</td><td>Bersih dari tanah, bebas busuk</td></tr>
+                                <tr><td>Kapasitas Pasokan</td><td>50 MT / Bulan</td></tr>
+                                <tr><td>Kemasan Ekspor</td><td>Mesh Bag 20kg / Karton</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="spec-card-action">
+                            <a class="button button-primary" href="/page/contact?produk=Jahe">Pesan Sampel / Penawaran</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. Cengkeh Lalpari -->
+                <article class="spec-card">
+                    <div class="spec-card-media">
+                        <img class="spec-card-image" src="https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=800&q=80" alt="Cengkeh Lalpari">
+                        <span class="spec-card-tag">Lalpari Grade 1</span>
+                        <span class="spec-card-origin">Indonesia</span>
+                    </div>
+                    <div class="spec-card-body">
+                        <span class="spec-card-latin">Syzygium aromaticum</span>
+                        <h3 class="spec-card-title">Cengkeh Kering (Dry Cloves)</h3>
+                        <p class="spec-card-desc">Kuncup bunga cengkeh merah kecokelatan kering pilihan dengan aroma eugenol tinggi, kepala bunga utuh bersih.</p>
+                        <table class="spec-table-mini">
+                            <tbody>
+                                <tr><td>Kadar Air</td><td>Maks. 12%</td></tr>
+                                <tr><td>Kadar Eugenol</td><td>Min. 18 - 20%</td></tr>
+                                <tr><td>Kepala Utuh</td><td>Min. 98%</td></tr>
+                                <tr><td>Kapasitas Pasokan</td><td>25 MT / Bulan</td></tr>
+                                <tr><td>Kemasan Ekspor</td><td>PP Bag 50 kg</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="spec-card-action">
+                            <a class="button button-primary" href="/page/contact?produk=Cengkeh">Pesan Sampel / Penawaran</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 5. Kayu Manis Korintje -->
+                <article class="spec-card">
+                    <div class="spec-card-media">
+                        <img class="spec-card-image" src="https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=800&q=80" alt="Kayu Manis">
+                        <span class="spec-card-tag">Stick & Broken</span>
+                        <span class="spec-card-origin">Indonesia</span>
+                    </div>
+                    <div class="spec-card-body">
+                        <span class="spec-card-latin">Cinnamomum burmannii</span>
+                        <h3 class="spec-card-title">Kayu Manis Korintje (Cinnamon)</h3>
+                        <p class="spec-card-desc">Kulit kayu manis kering pilihan dengan aroma manis aromatik pekat, tersedia bentuk batangan gulung maupun pecahan.</p>
+                        <table class="spec-table-mini">
+                            <tbody>
+                                <tr><td>Kadar Air</td><td>Maks. 13%</td></tr>
+                                <tr><td>Minyak Atsiri</td><td>Min. 2.5%</td></tr>
+                                <tr><td>Panjang Gulungan</td><td>8 cm, 10 cm, atau Cut</td></tr>
+                                <tr><td>Kapasitas Pasokan</td><td>25 MT / Bulan</td></tr>
+                                <tr><td>Kemasan Ekspor</td><td>Master Carton 10-25 kg</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="spec-card-action">
+                            <a class="button button-primary" href="/page/contact?produk=Kayu%20Manis">Pesan Sampel / Penawaran</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 6. Kemiri Kupas Super -->
+                <article class="spec-card">
+                    <div class="spec-card-media">
+                        <img class="spec-card-image" src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?auto=format&fit=crop&w=800&q=80" alt="Kemiri Kupas">
+                        <span class="spec-card-tag">Super Whole</span>
+                        <span class="spec-card-origin">Jawa Barat</span>
+                    </div>
+                    <div class="spec-card-body">
+                        <span class="spec-card-latin">Aleurites moluccanus</span>
+                        <h3 class="spec-card-title">Kemiri Kupas Utuh (Candlenut)</h3>
+                        <p class="spec-card-desc">Biji kemiri kupas utuh putih kekuningan alami dengan kadar minyak nabati tinggi, diproses kering higienis.</p>
+                        <table class="spec-table-mini">
+                            <tbody>
+                                <tr><td>Kadar Air</td><td>Maks. 5 - 7%</td></tr>
+                                <tr><td>Keutuhan</td><td>Min. 90% Utuh Bulat</td></tr>
+                                <tr><td>Kondisi Hama</td><td>Fumigasi Standar Ekspor</td></tr>
+                                <tr><td>Kapasitas Pasokan</td><td>30 MT / Bulan</td></tr>
+                                <tr><td>Kemasan Ekspor</td><td>Plastik Vakum 10kg + Box</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="spec-card-action">
+                            <a class="button button-primary" href="/page/contact?produk=Kemiri">Pesan Sampel / Penawaran</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- PACKAGING STANDARDS -->
+        <section class="advantage-section">
+            <div class="section-wrap">
+                <div class="section-heading">
+                    <p class="eyebrow">Standarisasi Pengemasan Ekspor</p>
+                    <h2>Pilihan Kemasan Sesuai Regulasi Negara Tujuan</h2>
+                </div>
+                <div class="advantage-grid">
+                    <div class="advantage-card">
+                        <span class="adv-icon">📦</span>
+                        <h3>Multiwall Kraft Bags</h3>
+                        <p>Kantong kertas kraft multilapis dengan liner PE anti-lembab untuk perlindungan maksimal kapulaga dan rempah halus.</p>
+                    </div>
+                    <div class="advantage-card">
+                        <span class="adv-icon">🧵</span>
+                        <h3>PP Woven Bags (Food Grade)</h3>
+                        <p>Karung anyaman polipropilena tahan robek kapasitas 25kg dan 50kg dengan jahitan ganda untuk biji pala dan cengkeh.</p>
+                    </div>
+                    <div class="advantage-card">
+                        <span class="adv-icon">❄️</span>
+                        <h3>Plastik Vakum Kedap Udara</h3>
+                        <p>Kemasan vakum tebal untuk komoditas berkadar minyak tinggi seperti kemiri agar terhindar dari ketengikan selama pelayaran.</p>
+                    </div>
+                    <div class="advantage-card">
+                        <span class="adv-icon">🏷️</span>
+                        <h3>Private Label & Custom Barcode</h3>
+                        <p>Penyediaan pelabelan khusus importir (buyer's shipping mark, nomor lot, barcode kargo, dan instruksi penanganan).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <% } %>
+
+    <!-- ==================== PAGE: LAYANAN (SERVICES) ==================== -->
+    <% if (page.slug === 'services') { %>
+        <!-- 5 COMPREHENSIVE EXPORT SERVICES -->
+        <section class="section-wrap" style="padding-bottom: 70px;">
+            <div class="section-topline">
+                <div>
+                    <p class="eyebrow">Rantai Pasok Terintegrasi</p>
+                    <h2>5 Layanan Utama Ekspor Solnovis.</h2>
+                </div>
+            </div>
+
+            <div class="advantage-grid">
+                <div class="advantage-card">
+                    <span class="adv-icon">🌱</span>
+                    <h3>1. Contract Sourcing & Aggregation</h3>
+                    <p>Pengadaan komoditas terencana langsung dari kelompok tani binaan di Jawa Barat untuk menjamin stabilitas kuantitas dan kepastian harga jangka panjang.</p>
+                </div>
+                <div class="advantage-card">
+                    <span class="adv-icon">🔬</span>
+                    <h3>2. Sorting, Grading & Lab Testing</h3>
+                    <p>Penyortiran manual oleh tenaga terampil, pembersihan kotoran (admixture), uji kadar air, dan penerbitan Certificate of Analysis (COA) dari laboratorium terakreditasi.</p>
+                </div>
+                <div class="advantage-card">
+                    <span class="adv-icon">📦</span>
+                    <h3>3. Packaging & Custom Shipping Marks</h3>
+                    <p>Pengemasan berstandar ekspor (kraft bags, pp woven, vakum) lengkap dengan penandaan kargo (shipping marks) sesuai instruksi pembeli.</p>
+                </div>
+                <div class="advantage-card">
+                    <span class="adv-icon">🛡️</span>
+                    <h3>4. Fumigasi & Sertifikasi Karantina</h3>
+                    <p>Pelaksanaan perlakuan fumigasi resmi berstandar AFAS serta inspeksi karantina tumbuhan untuk penerbitan Phytosanitary Certificate.</p>
+                </div>
+            </div>
+
+            <!-- DOCUMENTS DELIVERED -->
+            <div style="margin-top: 50px; background: #fff; border: 1px solid #dce2d7; border-radius: 12px; padding: 34px;">
+                <p class="eyebrow">Transparansi Legalitas Dokumen</p>
+                <h3 style="font-size: 22px; color: var(--forest); margin: 0 0 12px;">Dokumen Pengapalan yang Kami Terbitkan untuk Importir</h3>
+                <p style="font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 16px;">
+                    Setiap transaksi ekspor kami lengkapi dengan bundel dokumen kepabeanan dan karantina internasional yang valid untuk kelancaran proses bea cukai di pelabuhan tujuan Anda:
+                </p>
+                <div class="doc-strip">
+                    <span class="doc-pill">Certificate of Origin (COO / Form AK / Form E / Form D)</span>
+                    <span class="doc-pill">Phytosanitary Certificate (Badan Karantina Indonesia)</span>
+                    <span class="doc-pill">Bill of Lading (Clean on Board Ocean B/L)</span>
+                    <span class="doc-pill">Fumigation Certificate (Standar AFAS)</span>
+                    <span class="doc-pill">Commercial Invoice & Detailed Packing List</span>
+                    <span class="doc-pill">Certificate of Analysis (COA Lab Uji Mutu)</span>
+                    <span class="doc-pill">Pemberitahuan Ekspor Barang (PEB Bea Cukai)</span>
+                </div>
+            </div>
+        </section>
+    <% } %>
+
+    <!-- ==================== PAGE: KONTAK (CONTACT) ==================== -->
+    <% if (page.slug === 'contact') { %>
+        <section class="section-wrap" style="padding-bottom: 90px;">
+            <!-- DIRECT CONTACT CARDS -->
+            <div class="contact-quick-bar">
+                <a class="contact-quick-card" href="https://wa.me/6281234567890?text=Halo%20Solnovis,%20saya%20ingin%20berdiskusi%20tentang%20spesifikasi%20ekspor%20rempah." target="_blank" rel="noopener">
+                    <strong>💬 WhatsApp Bisnis Ekspor</strong>
+                    <span>+62 812-3456-7890 (Respon Cepat)</span>
+                </a>
+                <a class="contact-quick-card" href="mailto:<%= setting('contact_email') || 'export@solnovis.com' %>">
+                    <strong>✉️ Email Departemen Ekspor</strong>
+                    <span><%= setting('contact_email') || 'export@solnovis.com' %></span>
+                </a>
+                <div class="contact-quick-card">
+                    <strong>📍 Kantor & Hub Ekspor</strong>
+                    <span><%= setting('location', 'Jawa Barat, Indonesia') %></span>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <div class="contact-aside">
+                    <p class="eyebrow">Permintaan Kuotasi Ekspor</p>
+                    <h2>Mulai Diskusi dengan<br>Detail Kebutuhan Anda.</h2>
+                    <p>Sampaikan komoditas yang dicari, perkiraan volume kontainer, Incoterms yang diinginkan, dan pelabuhan tujuan.</p>
+                    
+                    <div class="contact-note">
+                        <span class="note-dot"></span>
+                        <span>Tim perdagangan ekspor kami meninjau formulir ini dan mengirimkan penawaran harga FOB/CIF dalam waktu 24 jam kerja.</span>
+                    </div>
+
+                    <div style="margin-top: 32px; padding: 22px; background: #edf2ed; border-radius: 8px;">
+                        <strong style="display: block; font-size: 14px; color: var(--forest); margin-bottom: 6px;">Butuh Sampel Produk Cepat?</strong>
+                        <p style="font-size: 12px; color: var(--muted); line-height: 1.6; margin: 0 0 12px;">
+                            Kami menyediakan pengiriman sampel rempah (200 - 500g) via DHL/FedEx ke seluruh dunia untuk uji laboratorium Anda.
+                        </p>
+                        <a class="text-link" href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20memesan%20sampel%20komoditas%20ekspor." target="_blank" rel="noopener">Minta Sampel via WhatsApp ↗</a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3 style="font-size: 20px; color: var(--forest); margin: 0 0 10px;">Formulir Permintaan Penawaran B2B</h3>
+                    <p style="font-size: 13px; color: var(--muted); margin: 0 0 20px;">Lengkapi informasi berikut untuk memudahkan perhitungan logistik dan harga FOB/CIF terbaik.</p>
+                    
+                    <form id="inquiry-form" style="display: flex; flex-direction: column; gap: 16px;">
+                        <div class="form-row">
+                            <label>Nama Lengkap <span>*</span>
+                                <input type="text" name="name" required placeholder="Nama kontak bisnis">
+                            </label>
+                            <label>Nama Perusahaan / Importir <span>*</span>
+                                <input type="text" name="company" required placeholder="Contoh: Global Spice Traders Ltd.">
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>Alamat Email Perusahaan <span>*</span>
+                                <input type="email" name="email" required placeholder="name@company.com">
+                            </label>
+                            <label>Nomor Telepon / WhatsApp <span>*</span>
+                                <input type="text" name="phone" required placeholder="+62 / +1 / +86 ...">
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>Komoditas Diminati <span>*</span>
+                                <select name="product" id="product">
+                                    <option value="Kapulaga (Cardamom)">Kapulaga Putih / Hijau (Java Cardamom)</option>
+                                    <option value="Pala (Nutmeg)">Biji Pala & Fuli (Nutmeg & Mace)</option>
+                                    <option value="Jahe (Ginger)">Jahe Gajah / Jahe Kering (Ginger)</option>
+                                    <option value="Cengkeh (Cloves)">Cengkeh Kering (Dry Cloves)</option>
+                                    <option value="Kayu Manis (Cinnamon)">Kayu Manis Korintje (Cassia)</option>
+                                    <option value="Kemiri (Candlenut)">Kemiri Kupas Bulat (Candlenut)</option>
+                                    <option value="Komoditas Lain">Komoditas Pertanian Lainnya</option>
+                                </select>
+                            </label>
+                            <label>Estimasi Volume Pembelian
+                                <select name="volume" id="volume">
+                                    <option value="1 Kontainer 20ft (FCL 10-14 MT)">1 Kontainer 20ft (FCL 10-14 MT)</option>
+                                    <option value="1 Kontainer 40ft (FCL 24-26 MT)">1 Kontainer 40ft (FCL 24-26 MT)</option>
+                                    <option value="Lebih dari 2 Kontainer FCL">Multi-Container FCL (50+ MT)</option>
+                                    <option value="LCL (1 - 5 MT)">LCL Kargo (1 - 5 MT)</option>
+                                    <option value="Pemesanan Sampel (Trial)">Pemesanan Sampel Lab (Trial)</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>Ketentuan Pengapalan (Incoterms)
+                                <select name="incoterm" id="incoterm">
+                                    <option value="FOB Tanjung Priok / Patimban">FOB (Tanjung Priok / Patimban Port)</option>
+                                    <option value="CIF (Pelabuhan Tujuan)">CIF (Cost, Insurance & Freight)</option>
+                                    <option value="CFR (Cost & Freight)">CFR (Cost & Freight)</option>
+                                    <option value="Diskusi Lebih Lanjut">Diskusi Lebih Lanjut</option>
+                                </select>
+                            </label>
+                            <label>Negara & Pelabuhan Tujuan <span>*</span>
+                                <input type="text" name="destination" required placeholder="Contoh: Tokyo Port, Japan / Jebel Ali, UAE">
+                            </label>
+                        </div>
+                        <label>Spesifikasi Khusus & Catatan Kebutuhan <span>*</span>
+                            <textarea id="message" name="message" rows="4" required placeholder="Jelaskan kebutuhan spesifikasi (kadar air, grading, jenis kemasan, perkiraan jadwal pengiriman)..."></textarea>
+                        </label>
+                        <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+                            <button class="button button-primary form-submit" type="submit">Kirim Permintaan Kuotasi Ekspor →</button>
+                            <a class="whatsapp-link" href="https://wa.me/6281234567890?text=Halo%20Solnovis,%20saya%20ingin%20berdiskusi%20tentang%20spesifikasi%20ekspor%20rempah." target="_blank" rel="noopener">Chat via WhatsApp Business ↗</a>
+                        </div>
+                        <p id="form-status" class="form-status"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    <% } %>
+</main>
+<%- include('partials/site-footer', { setting: setting }) %>

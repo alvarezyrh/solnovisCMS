@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Login | Dashboard Admin Web SOLNOVIS</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/admin.css">
+</head>
+<body class="admin-login-body">
+    <main class="admin-login-card">
+        <a class="admin-brand" href="/">
+            <span class="brand-mark">S</span>
+            <span class="admin-brand-title">Dashboard Admin Web <small>SOLNOVIS</small></span>
+        </a>
+        <p class="eyebrow">Area administrator</p>
+        <h1>Masuk ke dashboard</h1>
+        <% if (error) { %>
+            <p class="admin-alert error" role="alert"><%= error %></p>
+        <% } %>
+        <form class="admin-form" method="post" action="/admin/login">
+            <input type="hidden" name="csrf_token" value="<%= csrfToken %>">
+            <label>Email
+                <input type="email" name="email" autocomplete="username" required autofocus value="<%= values ? values.email || '' : '' %>">
+            </label>
+            <label>Kata sandi
+                <input type="password" name="password" autocomplete="current-password" required>
+            </label>
+            <button class="button button-primary" type="submit">Masuk →</button>
+        </form>
+        <p class="admin-muted" style="margin-top: 20px; font-size: 13px; text-align: center;">
+            Default credentials: <strong>admin@solnovis.com</strong> / <strong>admin12345678</strong>
+        </p>
+    </main>
+</body>
+</html>

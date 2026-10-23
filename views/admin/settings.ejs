@@ -1,0 +1,21 @@
+<%- include('../partials/admin-header', { title: 'Settings website', active: 'settings', currentUser: currentUser, csrfToken: csrfToken, flash: flash }) %>
+
+<% if (error) { %>
+    <p class="admin-alert error" role="alert"><%= error %></p>
+<% } %>
+
+<section class="admin-panel admin-editor">
+    <form class="admin-form" method="post" action="/admin/settings">
+        <input type="hidden" name="csrf_token" value="<%= csrfToken %>">
+        <% keys.forEach(function(key) { %>
+            <label><%= labels[key] %>
+                <input name="<%= key %>" value="<%= values[key] || '' %>"<%= key === 'contact_email' ? ' type="email"' : '' %>>
+            </label>
+        <% }); %>
+        <div class="admin-form-actions">
+            <button class="admin-button" type="submit">Simpan settings</button>
+        </div>
+    </form>
+</section>
+
+<%- include('../partials/admin-footer') %>

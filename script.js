@@ -153,11 +153,14 @@ if (inquiryForm instanceof HTMLFormElement) {
 
     const requestedProduct = new URLSearchParams(window.location.search).get("produk");
     if (productField instanceof HTMLSelectElement && requestedProduct) {
-        const matchingOption = Array.from(productField.options).find((option) => option.value.toLowerCase() === requestedProduct.toLowerCase());
+        const matchingOption = Array.from(productField.options).find((option) => 
+            option.value.toLowerCase().includes(requestedProduct.toLowerCase()) || 
+            option.text.toLowerCase().includes(requestedProduct.toLowerCase())
+        );
         if (matchingOption) {
             productField.value = matchingOption.value;
-            if (messageField instanceof HTMLTextAreaElement) {
-                messageField.value = `Saya ingin mengetahui informasi lebih lanjut mengenai ${matchingOption.value}.`;
+            if (messageField instanceof HTMLTextAreaElement && !messageField.value) {
+                messageField.value = `Kami tertarik untuk meminta penawaran harga FOB/CIF dan spesifikasi resmi untuk ${matchingOption.text}. Mohon info ketersediaan stok panen dan prosedur pengiriman sampel.`;
             }
         }
     }
@@ -167,18 +170,22 @@ if (inquiryForm instanceof HTMLFormElement) {
         if (!inquiryForm.reportValidity()) return;
 
         const formData = new FormData(inquiryForm);
-        const subject = `Permintaan informasi komoditas - ${formData.get("product") || "Solnovis"}`;
+        const subject = `Permintaan Penawaran Ekspor - ${formData.get("product") || "Rempah"} - ${formData.get("company") || "Solnovis"}`;
         const body = [
-            `Nama: ${formData.get("name")}`,
+            `Nama Kontak: ${formData.get("name")}`,
             `Perusahaan: ${formData.get("company") || "-"}`,
             `Email: ${formData.get("email")}`,
-            `Komoditas: ${formData.get("product") || "-"}`,
+            `Telepon/WhatsApp: ${formData.get("phone") || "-"}`,
+            `Komoditas Diminati: ${formData.get("product") || "-"}`,
+            `Estimasi Volume: ${formData.get("volume") || "-"}`,
+            `Ketentuan Pengapalan: ${formData.get("incoterm") || "-"}`,
+            `Pelabuhan/Negara Tujuan: ${formData.get("destination") || "-"}`,
             "",
-            "Kebutuhan:",
+            "Spesifikasi & Kebutuhan Khusus:",
             formData.get("message")
         ].join("\n");
 
-        if (status) status.textContent = "Aplikasi email sedang dibuka. Tinjau kembali detail permintaan, lalu kirim email untuk menyelesaikan pengiriman.";
+        if (status) status.textContent = "Aplikasi email Anda sedang dibuka. Tinjau kembali detail penawaran, lalu kirim email untuk menyelesaikan permintaan.";
         window.location.href = `mailto:${emailRecipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
 }

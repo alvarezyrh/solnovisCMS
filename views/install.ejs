@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Setup | Dashboard Admin Web SOLNOVIS</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/admin.css">
+</head>
+<body class="admin-login-body">
+    <main class="admin-login-card">
+        <a class="admin-brand" href="/">
+            <span class="brand-mark">S</span>
+            <span class="admin-brand-title">Dashboard Admin Web <small>SOLNOVIS</small></span>
+        </a>
+        <p class="eyebrow">Pengaturan awal</p>
+        <h1>Buat akun administrator</h1>
+        <p class="admin-muted">Akun ini akan memiliki akses penuh ke dashboard CMS.</p>
+        <% if (error) { %>
+            <p class="admin-alert error" role="alert"><%= error %></p>
+        <% } %>
+        <form class="admin-form" method="post" action="/install">
+            <input type="hidden" name="csrf_token" value="<%= csrfToken %>">
+            <label>Nama administrator
+                <input name="name" autocomplete="name" required value="<%= values ? values.name || '' : '' %>">
+            </label>
+            <label>Email
+                <input type="email" name="email" autocomplete="email" required value="<%= values ? values.email || '' : '' %>">
+            </label>
+            <label>Kata sandi (minimal 12 karakter)
+                <input type="password" name="password" autocomplete="new-password" minlength="12" required>
+            </label>
+            <button class="button button-primary" type="submit">Buat akun & buka dashboard →</button>
+        </form>
+    </main>
+</body>
+</html>

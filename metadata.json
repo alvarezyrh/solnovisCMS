@@ -1,0 +1,8 @@
+{
+  "name": "Solnovis CMS",
+  "description": "Content management system and company website for PT Solnovis Main Global, managing commodities, pages, menus, hero slides, and administrative profiles.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

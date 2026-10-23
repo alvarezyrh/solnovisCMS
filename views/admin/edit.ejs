@@ -1,0 +1,113 @@
+<%- include('../partials/admin-header', { title: title, active: config.active, currentUser: currentUser, csrfToken: csrfToken, flash: flash }) %>
+
+<section class="admin-panel admin-editor">
+    <% if (error) { %>
+        <p class="admin-alert error" role="alert"><%= error %></p>
+    <% } %>
+    <form class="admin-form" method="post" action="/admin/edit?type=<%= type %><%= id > 0 ? '&id=' + id : '' %>">
+        <input type="hidden" name="csrf_token" value="<%= csrfToken %>">
+
+        <% if (type === 'hero_slides') { %>
+            <label>Label kecil
+                <input name="kicker" required value="<%= fields.kicker || '' %>">
+            </label>
+            <label>Judul slide
+                <input name="title" required value="<%= fields.title || '' %>">
+            </label>
+            <label>Deskripsi
+                <textarea name="excerpt" rows="3" required><%= fields.excerpt || '' %></textarea>
+            </label>
+            <label>URL gambar
+                <input type="url" name="image_url" required value="<%= fields.image_url || '' %>" placeholder="https://...">
+                <small>Gunakan URL gambar HTTP/HTTPS. Ukuran landscape direkomendasikan.</small>
+            </label>
+            <label>Label pada gambar
+                <input name="label" value="<%= fields.label || '' %>">
+            </label>
+            <label>Caption pada gambar
+                <textarea name="caption" rows="2"><%= fields.caption || '' %></textarea>
+            </label>
+            <label>Teks tombol
+                <input name="cta_label" value="<%= fields.cta_label || 'Hubungi kami' %>">
+            </label>
+            <label>URL tombol
+                <input name="cta_url" value="<%= fields.cta_url || 'page.php?slug=contact' %>" placeholder="page.php?slug=contact">
+            </label>
+            <label>Urutan
+                <input type="number" min="0" name="sort_order" value="<%= fields.sort_order || 0 %>">
+            </label>
+            <label class="admin-checkbox">
+                <input type="checkbox" name="is_visible" value="1" <%= fields.is_visible == 1 ? 'checked' : '' %>> Tampilkan slide
+            </label>
+
+        <% } else if (type === 'posts' || type === 'pages') { %>
+            <label>Judul
+                <input name="title" required value="<%= fields.title || '' %>">
+            </label>
+            <label>Slug
+                <input name="slug" value="<%= fields.slug || '' %>" placeholder="otomatis-dari-judul">
+                <small>Dipakai sebagai alamat konten dan hanya menggunakan huruf kecil, angka, serta tanda hubung.</small>
+            </label>
+            <label>Ringkasan
+                <textarea name="excerpt" rows="3"><%= fields.excerpt || '' %></textarea>
+            </label>
+            <label>Konten
+                <textarea name="content" rows="12"><%= fields.content || '' %></textarea>
+                <small>Gunakan baris kosong untuk memisahkan paragraf. HTML akan ditampilkan sebagai teks biasa.</small>
+            </label>
+            <label>Status
+                <select name="status">
+                    <option value="draft" <%= fields.status === 'draft' ? 'selected' : '' %>>Draft</option>
+                    <option value="published" <%= fields.status === 'published' ? 'selected' : '' %>>Terbit</option>
+                </select>
+            </label>
+            <% if (type === 'pages') { %>
+                <label class="admin-checkbox">
+                    <input type="checkbox" name="is_home" value="1" <%= fields.is_home == 1 ? 'checked' : '' %>> Jadikan halaman beranda
+                </label>
+            <% } %>
+
+        <% } else if (type === 'menus') { %>
+            <label>Label menu
+                <input name="label" required value="<%= fields.label || '' %>">
+            </label>
+            <label>URL
+                <input name="url" required value="<%= fields.url || '' %>" placeholder="page.php?slug=about">
+                <small>Gunakan index.php, posts.php, page.php?slug=..., atau URL HTTPS.</small>
+            </label>
+            <label>Urutan
+                <input type="number" min="0" name="sort_order" value="<%= fields.sort_order || 0 %>">
+            </label>
+            <label class="admin-checkbox">
+                <input type="checkbox" name="is_cta" value="1" <%= fields.is_cta == 1 ? 'checked' : '' %>> Tampilkan sebagai tombol CTA
+            </label>
+            <label class="admin-checkbox">
+                <input type="checkbox" name="is_visible" value="1" <%= fields.is_visible == 1 ? 'checked' : '' %>> Tampilkan di navigasi
+            </label>
+
+        <% } else { %>
+            <label>Nama
+                <input name="name" autocomplete="name" required value="<%= fields.name || '' %>">
+            </label>
+            <label>Email
+                <input type="email" name="email" autocomplete="email" required value="<%= fields.email || '' %>">
+            </label>
+            <label>Peran
+                <select name="role">
+                    <option value="admin" <%= fields.role === 'admin' ? 'selected' : '' %>>Administrator</option>
+                    <option value="editor" <%= fields.role === 'editor' ? 'selected' : '' %>>Editor</option>
+                </select>
+            </label>
+            <label>Kata sandi <%= id > 0 ? '(kosongkan jika tidak diubah)' : '(minimal 12 karakter)' %>
+                <input type="password" name="password" autocomplete="new-password" <%= id === 0 ? 'required minlength="12"' : 'minlength="12"' %>>
+            </label>
+        <% } %>
+
+        <div class="admin-form-actions">
+            <button class="admin-button" type="submit">Simpan <%= config.title.toLowerCase() %></button>
+            <a class="admin-cancel" href="/admin/manage?type=<%= type %>">Batal</a>
+        </div>
+    </form>
+</section>
+
+<%- include('../partials/admin-footer') %>

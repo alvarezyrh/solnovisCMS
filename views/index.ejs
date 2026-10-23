@@ -1,0 +1,593 @@
+<%- include('partials/site-header', { title: pageTitle, description: description, activeSlug: 'home', menuItems: menuItems, setting: setting }) %>
+<main>
+    <% if (home) { %>
+        <!-- FULLSCREEN HERO SECTION -->
+        <section class="hero hero-slider" aria-label="Cerita Solnovis">
+            <div class="hero-slides">
+                <% heroSlides.forEach(function(slide, slideIndex) { %>
+                    <article class="hero-slide <%= slideIndex === 0 ? 'is-active' : '' %>" data-slide-index="<%= slideIndex %>" aria-hidden="<%= slideIndex === 0 ? 'false' : 'true' %>">
+                        <div class="hero-content">
+                            <p class="eyebrow"><span class="eyebrow-line"></span> <%= slide.kicker %></p>
+                            <h1><%= slide.title %></h1>
+                            <p class="hero-copy"><%= slide.excerpt %></p>
+                            <div class="hero-actions">
+                                <a class="button button-primary" href="<%= slide.cta_url.startsWith('page.php?slug=') ? '/page/' + slide.cta_url.split('slug=')[1] : slide.cta_url %>"><%= slide.cta_label %> <span aria-hidden="true">→</span></a>
+                                <a class="text-link" href="/page/about">Kenali Solnovis <span aria-hidden="true">↗</span></a>
+                            </div>
+                            <div class="hero-note"><span class="note-dot"></span> Berakar di Jawa Barat, terpercaya memasok pasar ekspor dunia</div>
+                            <div class="hero-highlights" aria-label="Fokus perusahaan">
+                                <div class="hero-highlight"><strong>06+</strong><span>Komoditas Unggulan</span></div>
+                                <div class="hero-highlight"><strong>150+ MT</strong><span>Kapasitas Bulanan</span></div>
+                                <div class="hero-highlight"><strong>FOB/CIF</strong><span>Incoterms Fleksibel</span></div>
+                                <div class="hero-highlight"><strong>Terkarantina</strong><span>Sertifikasi Resmi</span></div>
+                            </div>
+                        </div>
+                        <div class="hero-art" aria-label="<%= slide.title %>" role="img">
+                            <img class="hero-slide-image" src="<%= slide.image_url %>" alt="<%= slide.title %>">
+                            <div class="hero-art-overlay"></div>
+                            <div class="art-label"><span><%= slide.label %></span><strong>Grown with purpose.</strong></div>
+                            <div class="art-stamp">DARI<br>JAWA BARAT</div><div class="art-coordinate">LOCAL SOURCE · GLOBAL MARKET</div>
+                            <p class="art-caption"><%= slide.caption %></p>
+                        </div>
+                    </article>
+                <% }); %>
+            </div>
+            <% if (heroSlides.length > 1) { %>
+                <div class="hero-slider-controls" aria-label="Kontrol slider">
+                    <button class="hero-slider-arrow hero-slider-prev" type="button" aria-label="Slide sebelumnya">←</button>
+                    <div class="hero-slider-dots">
+                        <% heroSlides.forEach(function(slide, slideIndex) { %>
+                            <button class="hero-slider-dot <%= slideIndex === 0 ? 'is-active' : '' %>" type="button" data-slide-to="<%= slideIndex %>" aria-label="Tampilkan slide <%= slideIndex + 1 %>" aria-current="<%= slideIndex === 0 ? 'true' : 'false' %>"></button>
+                        <% }); %>
+                    </div>
+                    <button class="hero-slider-arrow hero-slider-next" type="button" aria-label="Slide berikutnya">→</button>
+                </div>
+            <% } %>
+        </section>
+
+        <!-- GLOBAL CERTIFICATIONS & STANDARDS TRUST BAR -->
+        <section class="cert-strip" aria-label="Standar Mutu Ekspor">
+            <div class="section-wrap">
+                <div class="cert-grid">
+                    <div class="cert-item">
+                        <div class="cert-icon">🌾</div>
+                        <div class="cert-text">
+                            <strong>Phytosanitary Certified</strong>
+                            <span>Karantina Pertanian RI</span>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">🔬</div>
+                        <div class="cert-text">
+                            <strong>Teruji Laboratorium</strong>
+                            <span>Kadar air & minyak atsiri terverifikasi</span>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">🛡️</div>
+                        <div class="cert-text">
+                            <strong>HACCP & Clean Handling</strong>
+                            <span>Sortasi higienis bebas kontaminan</span>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">🚢</div>
+                        <div class="cert-text">
+                            <strong>Pelabuhan Internasional</strong>
+                            <span>Tanjung Priok & Patimban Port</span>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">📋</div>
+                        <div class="cert-text">
+                            <strong>Legalitas Ekspor Lengkap</strong>
+                            <span>COO, PEB, Fumigasi Standar AFAS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTRO SECTION -->
+        <section class="intro-section section-wrap">
+            <div class="section-heading">
+                <p class="eyebrow">Eksportir Rempah Terpercaya</p>
+                <h2><%= home.title %><br><em>kemitraan ekspor bernilai tinggi.</em></h2>
+            </div>
+            <div class="intro-copy">
+                <%- renderPlainContent(home.content) %>
+                <div style="margin-top: 20px; display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a class="button button-primary" href="/page/product">Katalog Spesifikasi Rempah →</a>
+                    <a class="text-link" href="/page/about">Profil & Legalitas Perusahaan <span aria-hidden="true">→</span></a>
+                </div>
+            </div>
+        </section>
+    <% } else { %>
+        <section class="page-hero section-wrap"><p class="eyebrow">Website sedang disiapkan</p><h1>Konten beranda belum tersedia.</h1><p class="page-lead">Publikasikan halaman dan tetapkan sebagai beranda melalui dashboard CMS.</p><a class="button button-primary" href="/admin/login">Masuk ke CMS →</a></section>
+    <% } %>
+
+    <!-- FEATURED EXPORT COMMODITIES MATRIX WITH TECHNICAL SPECS -->
+    <section class="commodity-section section-wrap" style="padding-top: 10px;">
+        <div class="section-topline">
+            <div>
+                <p class="eyebrow">Portofolio Komoditas Ekspor</p>
+                <h2>Rempah Unggulan Standar Internasional.</h2>
+            </div>
+            <a class="text-link" href="/page/product">Lihat semua spesifikasi <span aria-hidden="true">→</span></a>
+        </div>
+        
+        <div class="spec-grid">
+            <!-- Card 1: Kapulaga -->
+            <article class="spec-card">
+                <div class="spec-card-media">
+                    <img class="spec-card-image" src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" alt="Kapulaga Jawa">
+                    <span class="spec-card-tag">Grade Ekspor Super</span>
+                    <span class="spec-card-origin">Jawa Barat</span>
+                </div>
+                <div class="spec-card-body">
+                    <span class="spec-card-latin">Amomum compactum</span>
+                    <h3 class="spec-card-title">Kapulaga Putih & Hijau (Cardamom)</h3>
+                    <p class="spec-card-desc">Biji kapulaga pilihan hasil sortasi teliti dari petani dataran tinggi Jawa Barat dengan aroma khas yang pekat dan bulir utuh bersih.</p>
+                    <table class="spec-table-mini">
+                        <tbody>
+                            <tr><td>Kadar Air</td><td>Maks. 13%</td></tr>
+                            <tr><td>Kadar Kotoran</td><td>Maks. 1.0%</td></tr>
+                            <tr><td>Minyak Atsiri</td><td>Min. 4.0%</td></tr>
+                            <tr><td>Kemasan Ekspor</td><td>PP Bag 25 kg / Karung Goni</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="spec-card-action">
+                        <a class="button button-primary" href="/page/contact?produk=Kapulaga">Minta Penawaran FOB/CIF</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 2: Pala & Fuli -->
+            <article class="spec-card">
+                <div class="spec-card-media">
+                    <img class="spec-card-image" src="https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=800&q=80" alt="Pala Indonesia">
+                    <span class="spec-card-tag">ABCD Sound & BWP</span>
+                    <span class="spec-card-origin">Indonesia</span>
+                </div>
+                <div class="spec-card-body">
+                    <span class="spec-card-latin">Myristica fragrans</span>
+                    <h3 class="spec-card-title">Biji Pala & Fuli (Nutmeg & Mace)</h3>
+                    <p class="spec-card-desc">Biji pala utuh kualitas suara (ABCD sound) dan fuli merah kering alami dengan kadar myristicin tinggi, bebas jamur & aflatoksin teruji.</p>
+                    <table class="spec-table-mini">
+                        <tbody>
+                            <tr><td>Kadar Air</td><td>Maks. 10 - 12%</td></tr>
+                            <tr><td>Kadar Kotoran</td><td>Maks. 0.5%</td></tr>
+                            <tr><td>Aflatoksin</td><td>Sesuai Regulasi EU/US FDA</td></tr>
+                            <tr><td>Kemasan Ekspor</td><td>Karton Box 25 kg / PP Bag</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="spec-card-action">
+                        <a class="button button-primary" href="/page/contact?produk=Pala">Minta Penawaran FOB/CIF</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 3: Jahe Gajah & Emprit -->
+            <article class="spec-card">
+                <div class="spec-card-media">
+                    <img class="spec-card-image" src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80" alt="Jahe Indonesia">
+                    <span class="spec-card-tag">Fresh & Dried Slices</span>
+                    <span class="spec-card-origin">Jawa Barat</span>
+                </div>
+                <div class="spec-card-body">
+                    <span class="spec-card-latin">Zingiber officinale</span>
+                    <h3 class="spec-card-title">Jahe Gajah & Jahe Kering (Ginger)</h3>
+                    <p class="spec-card-desc">Rimpang jahe gajah berukuran besar padat serta jahe kering iris (dried split/sliced) dengan tingkat kepedasan gingerol dan aroma yang kuat.</p>
+                    <table class="spec-table-mini">
+                        <tbody>
+                            <tr><td>Kadar Air (Kering)</td><td>Maks. 11%</td></tr>
+                            <tr><td>Kondisi Segar</td><td>Bersih, bebas busuk, 150g+</td></tr>
+                            <tr><td>Penyortiran</td><td>Manual Hand-Sorted</td></tr>
+                            <tr><td>Kemasan Ekspor</td><td>Mesh Bag 20kg / Karton Berventilasi</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="spec-card-action">
+                        <a class="button button-primary" href="/page/contact?produk=Jahe">Minta Penawaran FOB/CIF</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 4: Cengkeh Lalpari -->
+            <article class="spec-card">
+                <div class="spec-card-media">
+                    <img class="spec-card-image" src="https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=800&q=80" alt="Cengkeh Indonesia">
+                    <span class="spec-card-tag">Lalpari Grade 1</span>
+                    <span class="spec-card-origin">Indonesia</span>
+                </div>
+                <div class="spec-card-body">
+                    <span class="spec-card-latin">Syzygium aromaticum</span>
+                    <h3 class="spec-card-title">Cengkeh Bunga Kering (Cloves)</h3>
+                    <p class="spec-card-desc">Kuncup bunga cengkeh merah kecokelatan kering pilihan dengan aroma eugenol tinggi, kepala bunga utuh (headless < 2%), dan tangkai minimal.</p>
+                    <table class="spec-table-mini">
+                        <tbody>
+                            <tr><td>Kadar Air</td><td>Maks. 12%</td></tr>
+                            <tr><td>Kadar Eugenol</td><td>Min. 18 - 20%</td></tr>
+                            <tr><td>Foreign Matter</td><td>Maks. 0.5%</td></tr>
+                            <tr><td>Kemasan Ekspor</td><td>PP Woven Bag 50 kg</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="spec-card-action">
+                        <a class="button button-primary" href="/page/contact?produk=Cengkeh">Minta Penawaran FOB/CIF</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 5: Kayu Manis Korintje -->
+            <article class="spec-card">
+                <div class="spec-card-media">
+                    <img class="spec-card-image" src="https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=800&q=80" alt="Kayu Manis">
+                    <span class="spec-card-tag">Vera Stick & Broken</span>
+                    <span class="spec-card-origin">Indonesia</span>
+                </div>
+                <div class="spec-card-body">
+                    <span class="spec-card-latin">Cinnamomum burmannii</span>
+                    <h3 class="spec-card-title">Kayu Manis Korintje (Cassia Cinnamon)</h3>
+                    <p class="spec-card-desc">Kulit kayu manis kering pilihan dengan aroma manis aromatik pekat, tersedia dalam bentuk batangan gulung (rolls 8cm/10cm) maupun pecahan bersih.</p>
+                    <table class="spec-table-mini">
+                        <tbody>
+                            <tr><td>Kadar Air</td><td>Maks. 13%</td></tr>
+                            <tr><td>Minyak Atsiri</td><td>Min. 2.5%</td></tr>
+                            <tr><td>Panjang Gulungan</td><td>8 cm, 10 cm, atau Custom</td></tr>
+                            <tr><td>Kemasan Ekspor</td><td>Master Carton 10-25 kg</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="spec-card-action">
+                        <a class="button button-primary" href="/page/contact?produk=Kayu%20Manis">Minta Penawaran FOB/CIF</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 6: Kemiri Kupas Super -->
+            <article class="spec-card">
+                <div class="spec-card-media">
+                    <img class="spec-card-image" src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?auto=format&fit=crop&w=800&q=80" alt="Kemiri Kupas">
+                    <span class="spec-card-tag">Kupas Utuh Bulat</span>
+                    <span class="spec-card-origin">Jawa Barat</span>
+                </div>
+                <div class="spec-card-body">
+                    <span class="spec-card-latin">Aleurites moluccanus</span>
+                    <h3 class="spec-card-title">Kemiri Kupas Utuh (Candlenut)</h3>
+                    <p class="spec-card-desc">Biji kemiri kupas utuh putih kekuningan alami dengan kadar minyak nabati tinggi, diproses kering higienis untuk kebutuhan kuliner dan industri pangan.</p>
+                    <table class="spec-table-mini">
+                        <tbody>
+                            <tr><td>Kadar Air</td><td>Maks. 5 - 7%</td></tr>
+                            <tr><td>Persentase Utuh</td><td>Min. 90% Bulat Utuh</td></tr>
+                            <tr><td>Bebas Hama</td><td>Fumigasi Standar Ekspor</td></tr>
+                            <tr><td>Kemasan Ekspor</td><td>Plastik Vakum 10kg + Master Box</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="spec-card-action">
+                        <a class="button button-primary" href="/page/contact?produk=Kemiri">Minta Penawaran FOB/CIF</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- EXPORT ADVANTAGES SECTION -->
+    <section class="advantage-section">
+        <div class="section-wrap">
+            <div class="section-heading" style="text-align: center; max-width: 780px; margin: 0 auto;">
+                <p class="eyebrow" style="justify-content: center;">Keunggulan Kompetitif Kami</p>
+                <h2>Mengapa Memilih Solnovis sebagai Mitra Pengadaan Rempah?</h2>
+            </div>
+            
+            <div class="advantage-grid">
+                <div class="advantage-card">
+                    <span class="adv-icon">🌱</span>
+                    <h3>Sourcing Langsung Kelompok Tani</h3>
+                    <p>Bermitra langsung dengan rantai petani lokal di Jawa Barat memastikan stabilitas pasokan, kemurnian asal komoditas, dan harga tangan pertama yang kompetitif.</p>
+                </div>
+                <div class="advantage-card">
+                    <span class="adv-icon">🔍</span>
+                    <h3>Quality Control Bertingkat & Uji Lab</h3>
+                    <p>Setiap lot kiriman melalui inspeksi kadar air, uji kemurnian sortasi manual, dan pengujian laboratorium independen terakreditasi sebelum pemuatan kontainer.</p>
+                </div>
+                <div class="advantage-card">
+                    <span class="adv-icon">📄</span>
+                    <h3>Dokumentasi Ekspor Lengkap</h3>
+                    <p>Penyediaan Certificate of Origin (COO/Form AK/E), Phytosanitary Certificate Karantina Pertanian, Fumigation Certificate, dan Bill of Lading tanpa kendala.</p>
+                </div>
+                <div class="advantage-card">
+                    <span class="adv-icon">⚓</span>
+                    <h3>Akses Pelabuhan Strategis</h3>
+                    <p>Terhubung langsung ke Pelabuhan Internasional Tanjung Priok Jakarta dan Pelabuhan Patimban Subang untuk rute pelayaran maritim global tercepat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GLOBAL SHIPPING & LOGISTICS CAPABILITIES -->
+    <section class="logistics-section">
+        <div class="section-wrap">
+            <div class="logistics-grid">
+                <div>
+                    <p class="eyebrow eyebrow-light">Infrastruktur & Pengapalan Global</p>
+                    <h2>Siap Mengirim Kontainer FCL & LCL ke Pelabuhan Dunia.</h2>
+                    <p style="color: #cbd6ce; font-size: 14px; line-height: 1.85; margin: 18px 0 24px;">
+                        Kami berpengalaman mengelola rantai pasok ekspor komoditas pertanian dengan fleksibilitas ketentuan dagang internasional (Incoterms 2020) sesuai preferensi importir.
+                    </p>
+                    <div class="shipping-terms">
+                        <span class="shipping-term-badge">FOB (Free On Board)</span>
+                        <span class="shipping-term-badge">CIF (Cost, Insurance & Freight)</span>
+                        <span class="shipping-term-badge">CFR (Cost & Freight)</span>
+                        <span class="shipping-term-badge">20ft FCL (10-14 MT)</span>
+                        <span class="shipping-term-badge">40ft FCL (24-26 MT)</span>
+                        <span class="shipping-term-badge">LCL Cargo</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="port-cards">
+                        <div class="port-card">
+                            <strong>Pelabuhan Tanjung Priok</strong>
+                            <span>Hub maritim utama Indonesia di Jakarta Utara dengan jadwal pelayaran internasional harian ke seluruh benua.</span>
+                        </div>
+                        <div class="port-card">
+                            <strong>Pelabuhan Patimban</strong>
+                            <span>Pelabuhan ekspor modern terintegrasi di Subang, Jawa Barat, mempercepat pengiriman komoditas langsung dari hinterland sumber.</span>
+                        </div>
+                        <div class="port-card">
+                            <strong>Jangkauan Pasar Ekspor</strong>
+                            <span>Asia Timur (Jepang, Tiongkok, Korea), Timur Tengah (UEA, Saudi), Asia Selatan, Eropa Barat, dan Amerika Utara.</span>
+                        </div>
+                        <div class="port-card">
+                            <strong>Kapasitas & Fasilitas Gudang</strong>
+                            <span>Gudang penyimpanan kering beriklim terjaga, lantai jemur terkontrol, serta area fumigasi berlisensi.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6-STEP EXPORT PROCESS -->
+    <section class="section-wrap" style="padding-block: 84px;">
+        <div class="section-heading" style="text-align: center; max-width: 760px; margin: 0 auto;">
+            <p class="eyebrow" style="justify-content: center;">Prosedur Perdagangan Transparan</p>
+            <h2>6 Langkah Alur Kerjasama Ekspor Solnovis</h2>
+        </div>
+        
+        <div class="flow-steps-grid">
+            <div class="flow-step-card">
+                <span class="flow-step-num">Langkah 01</span>
+                <h3>Inquiry & Diskusi Kebutuhan</h3>
+                <p>Importir menyampaikan komoditas, perkiraan volume, spesifikasi khusus, negara tujuan, dan Incoterms yang diinginkan.</p>
+            </div>
+            <div class="flow-step-card">
+                <span class="flow-step-num">Langkah 02</span>
+                <h3>Penyediaan Sampel & Penawaran</h3>
+                <p>Pengiriman sampel rempah aktual via kurir ekspres internasional dan penyampaian Proforma Invoice (FOB/CIF) transparan.</p>
+            </div>
+            <div class="flow-step-card">
+                <span class="flow-step-num">Langkah 03</span>
+                <h3>Kontrak Dagang & Pembayaran</h3>
+                <p>Penyepakatan Sales Contract resmi dengan metode pembayaran aman berstandar internasional (Letter of Credit L/C atau T/T).</p>
+            </div>
+            <div class="flow-step-card">
+                <span class="flow-step-num">Langkah 04</span>
+                <h3>Sortasi, QC & Pengemasan</h3>
+                <p>Penyortiran teliti di gudang kami, penurunan kadar air, uji sampel lab, dan pengemasan sesuai permintaan label pembeli.</p>
+            </div>
+            <div class="flow-step-card">
+                <span class="flow-step-num">Langkah 05</span>
+                <h3>Fumigasi & Karantina Ekspor</h3>
+                <p>Proses fumigasi resmi berstandar AFAS dan inspeksi karantina tumbuhan Badan Karantina Indonesia untuk penerbitan Phytosanitary.</p>
+            </div>
+            <div class="flow-step-card">
+                <span class="flow-step-num">Langkah 06</span>
+                <h3>Pemuatan Kontainer & Pengapalan</h3>
+                <p>Stuffing kontainer ke pelabuhan, pengurusan Pemberitahuan Ekspor Barang (PEB), dan serah terima set lengkap dokumen pengapalan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE COMPREHENSIVE FAQ SECTION -->
+    <section class="faq-section-wrapper" aria-label="Pertanyaan yang Sering Diajukan">
+        <div class="section-wrap">
+            <div class="section-topline">
+                <div>
+                    <p class="eyebrow">Tanya Jawab Ekspor Rempah</p>
+                    <h2>Pertanyaan yang Sering Diajukan (FAQ) Pembeli Internasional.</h2>
+                </div>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                    <a class="button button-primary" href="/page/contact">Tanya Pertanyaan Lain →</a>
+                </div>
+            </div>
+            <p style="max-width: 680px; color: var(--muted); font-size: 14px; line-height: 1.8; margin-top: -12px;">
+                Berikut adalah panduan lengkap mengenai prosedur perdagangan, persyaratan teknis, pemesanan sampel, metode pembayaran internasional, dan dokumen legalitas ekspor bersama PT Solnovis Main Global:
+            </p>
+
+            <div class="faq-accordion-group">
+                <!-- FAQ 1 -->
+                <details class="faq-accordion-item" open>
+                    <summary class="faq-summary">
+                        <div class="faq-title-wrap">
+                            <span class="faq-badge">Kuantitas & MOQ</span>
+                            <span>Berapa Minimum Order Quantity (MOQ) untuk pembelian ekspor?</span>
+                        </div>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-content">
+                        <p>
+                            Minimum Order Quantity (MOQ) standar kami adalah <strong>1 kontainer 20ft Full Container Load (FCL)</strong> dengan tonase muatan berkisar antara <strong>10 hingga 14 Metric Ton (MT)</strong> tergantung pada densitas komoditas rempah.
+                        </p>
+                        <p style="margin-top: 10px;">
+                            Namun, untuk pembeli baru atau uji coba pasar, kami juga melayani pengiriman <strong>LCL (Less than Container Load) mulai dari 1 Metric Ton (MT)</strong> menggunakan palet kedap udara tersertifikasi, serta pengiriman sampel laboratorium skala kecil via kurir udara internasional.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- FAQ 2 -->
+                <details class="faq-accordion-item">
+                    <summary class="faq-summary">
+                        <div class="faq-title-wrap">
+                            <span class="faq-badge">Kargo Kontainer</span>
+                            <span>Apakah bisa memesan satu kontainer dengan kombinasi beberapa jenis rempah (Mixed Container)?</span>
+                        </div>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-content">
+                        <p>
+                            <strong>Ya, sangat bisa.</strong> Kami sering melayani pengapalan <em>Consolidated / Mixed Spices Container (20ft maupun 40ft FCL)</em>. Sebagai contoh, dalam satu kontainer 20ft Anda dapat mengombinasikan:
+                        </p>
+                        <ul>
+                            <li>5 MT Kapulaga Putih Jawa</li>
+                            <li>4 MT Biji Pala ABCD Sound & Fuli</li>
+                            <li>3 MT Cengkeh Kering Lalpari Grade 1</li>
+                        </ul>
+                        <p style="margin-top: 10px;">
+                            Setiap komoditas akan dipisah dengan partisi aman, dikemas dalam jenis karung/karton khusus, dan dilengkapi penandaan kargo (*shipping marks*) yang jelas untuk memudahkan pembongkaran di pelabuhan tujuan Anda.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- FAQ 3 -->
+                <details class="faq-accordion-item">
+                    <summary class="faq-summary">
+                        <div class="faq-title-wrap">
+                            <span class="faq-badge">Sampel & Uji Lab</span>
+                            <span>Bagaimana prosedur pemesanan sampel produk untuk uji laboratorium sebelum penandatanganan kontrak?</span>
+                        </div>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-content">
+                        <p>
+                            Kami memahami pentingnya verifikasi mutu sebelum transaksi skala kontainer. Prosedur pemesanan sampel kami sangat transparan:
+                        </p>
+                        <ul>
+                            <li><strong>Sampel Gratis:</strong> Kami menyediakan sampel rempah aktual sebanyak 200 hingga 500 gram secara cuma-cuma (*free of charge*).</li>
+                            <li><strong>Pengiriman Ekspres:</strong> Dikirim langsung menggunakan DHL, FedEx, atau EMS dengan nomor pelacakan (*tracking number* real-time) dan estimasi tiba 3 - 5 hari kerja.</li>
+                            <li><strong>Biaya Pengiriman:</strong> Biaya kurir ekspres ditanggung oleh calon pembeli, namun <em>biaya pengiriman sampel ini akan dipotong langsung (credited back)</em> dari total invoice pesanan kontainer pertama Anda.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- FAQ 4 -->
+                <details class="faq-accordion-item">
+                    <summary class="faq-summary">
+                        <div class="faq-title-wrap">
+                            <span class="faq-badge">Pembayaran</span>
+                            <span>Apa saja metode pembayaran internasional yang diterima oleh Solnovis?</span>
+                        </div>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-content">
+                        <p>
+                            Kami mendukung transaksi keuangan perdagangan internasional yang aman dan berstandar perbankan global:
+                        </p>
+                        <ul>
+                            <li><strong>Irrevocable Letter of Credit (L/C at Sight):</strong> Diterbitkan oleh bank internasional terkemuka, memberikan keamanan 100% bagi pembeli dan penjual.</li>
+                            <li><strong>Telegraphic Transfer (T/T Wire):</strong> Dengan termin standar deposit 30% saat penandatanganan Sales Contract dan pelunasan 70% setelah salinan resmi Bill of Lading (B/L) serta set dokumen ekspor dikirimkan via email.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- FAQ 5 -->
+                <details class="faq-accordion-item">
+                    <summary class="faq-summary">
+                        <div class="faq-title-wrap">
+                            <span class="faq-badge">Incoterms</span>
+                            <span>Apa saja pilihan ketentuan pengapalan (Incoterms 2020) dan pelabuhan muat yang tersedia?</span>
+                        </div>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-content">
+                        <p>
+                            Kami melayani skema perdagangan yang fleksibel sesuai kebutuhan Anda:
+                        </p>
+                        <ul>
+                            <li><strong>FOB (Free On Board):</strong> Kami menanggung seluruh biaya penanganan gudang, pengemasan, transportasi domestik, fumigasi, izin karantina, hingga kargo selesai dimuat ke atas kapal di <strong>Pelabuhan Tanjung Priok (Jakarta)</strong> atau <strong>Pelabuhan Patimban (Jawa Barat)</strong>.</li>
+                            <li><strong>CIF (Cost, Insurance & Freight):</strong> Kami menangani hingga biaya asuransi maritim internasional dan biaya kontainer kapal sampai kargo tiba di pelabuhan tujuan negara Anda.</li>
+                            <li><strong>CFR (Cost & Freight):</strong> Kami menanggung biaya kargo hingga pelabuhan tujuan tanpa asuransi (asuransi dikelola mandiri oleh pembeli).</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- FAQ 6 -->
+                <details class="faq-accordion-item">
+                    <summary class="faq-summary">
+                        <div class="faq-title-wrap">
+                            <span class="faq-badge">Legalitas & Sertifikasi</span>
+                            <span>Dokumen ekspor dan karantina apa saja yang disertakan dalam setiap pengapalan kontainer?</span>
+                        </div>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-content">
+                        <p>
+                            Setiap pengapalan kontainer disertai bundel dokumen lengkap (*Full Set of Clean Export Shipping Documents*) untuk kelancaran *customs clearance* di negara tujuan:
+                        </p>
+                        <ul>
+                            <li><strong>Bill of Lading (Clean on Board Ocean B/L):</strong> 3/3 Original set.</li>
+                            <li><strong>Certificate of Origin (COO):</strong> Surat Keterangan Asal resmi pemerintah (Form AK untuk Korea, Form E untuk ASEAN-China, Form D, atau Form R-COO).</li>
+                            <li><strong>Phytosanitary Certificate:</strong> Diterbitkan oleh Badan Karantina Indonesia menyatakan rempah bebas dari Organisme Pengganggu Tumbuhan Karantina (OPTK).</li>
+                            <li><strong>Fumigation Certificate:</strong> Perlakuan fumigasi resmi berstandar AFAS (Australian Fumigation Accreditation Scheme) atau Methyl Bromide / Phosphine.</li>
+                            <li><strong>Certificate of Analysis (COA):</strong> Hasil uji lab kadar air, kemurnian fisik, dan parameter mutu lainnya.</li>
+                            <li><strong>Commercial Invoice & Detailed Packing List:</strong> Berkas penagihan resmi bermaterai dan stempel perusahaan.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- FAQ 7 -->
+                <details class="faq-accordion-item">
+                    <summary class="faq-summary">
+                        <div class="faq-title-wrap">
+                            <span class="faq-badge">Kustomisasi Kemasan</span>
+                            <span>Apakah Solnovis melayani kemasan khusus (Private Label) dan spesifikasi kemasan tertentu?</span>
+                        </div>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-content">
+                        <p>
+                            <strong>Ya, kami menyediakan kustomisasi kemasan (*custom packaging & private label*)</strong> sesuai regulasi ritel atau industri negara pengimpor:
+                        </p>
+                        <ul>
+                            <li>Pilihan kemasan: Karung anyaman PP (PP Woven Bags 25kg/50kg), kantong kertas kraft anti-lembab multiwall, kemasan vakum kedap udara (5kg/10kg), serta karung goni tradisional.</li>
+                            <li>Pencetakan label merek pembeli (*Private Label*), nomor batch, tanggal panen, kode barcode internasional, dan simbol penanganan kargo (*fragile / keep dry*).</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- FAQ 8 -->
+                <details class="faq-accordion-item">
+                    <summary class="faq-summary">
+                        <div class="faq-title-wrap">
+                            <span class="faq-badge">Lead Time & Jadwal</span>
+                            <span>Berapa lama estimasi waktu dari konfirmasi kontrak hingga kontainer siap berlayar di pelabuhan?</span>
+                        </div>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <div class="faq-content">
+                        <p>
+                            Rata-rata <em>lead time</em> pengadaan hingga pemuatan kontainer adalah <strong>10 hingga 14 hari kerja</strong> setelah instrumen pembayaran (L/C terbuka atau DP T/T diterima), mencakup:
+                        </p>
+                        <ul>
+                            <li>Hari 1 - 4: Sortasi manual, *cleaning*, dan pengecekan kadar air di gudang utama Jawa Barat.</li>
+                            <li>Hari 5 - 7: Pengemasan ekspor, penimbangan (*weighing*), dan penandaan kargo (*shipping marks*).</li>
+                            <li>Hari 8 - 10: Proses fumigasi kargo berstandar resmi (durasi gas 24 - 48 jam) dan inspeksi fisik Badan Karantina Pertanian.</li>
+                            <li>Hari 11 - 14: Pengangkutan truk kontainer (*drayage*) ke Pelabuhan Tanjung Priok / Patimban, pengurusan PEB Bea Cukai, *stuffing* kontainer kapal, dan penerbitan Bill of Lading.</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLOSING CTA -->
+    <section class="closing-cta section-wrap" style="background: #edf2ed; border-radius: 12px; padding: 75px 40px; margin-bottom: 80px;">
+        <p class="eyebrow">Kemitraan Jangka Panjang</p>
+        <h2>Siap Mendiskusikan Pasokan Rempah<br>Berkualitas untuk Pasar Anda?</h2>
+        <p style="max-width: 580px; margin: 0 auto 30px; color: var(--muted); font-size: 15px;">
+            Hubungi tim perdagangan ekspor kami untuk mendapatkan penawaran spesifikasi teknis, ketersediaan panen, dan penawaran harga FOB/CIF terbaru.
+        </p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a class="button button-primary" href="/page/contact">Kirim Permintaan Kuotasi Ekspor →</a>
+            <a class="button button-light" style="border-color: #102c27; color: #102c27;" href="https://wa.me/6281234567890?text=Halo%20Solnovis,%20saya%20ingin%20berdiskusi%20tentang%20spesifikasi%20ekspor%20rempah." target="_blank" rel="noopener">WhatsApp Perdagangan Ekspor ↗</a>
+        </div>
+    </section>
+</main>
+<%- include('partials/site-footer', { setting: setting }) %>

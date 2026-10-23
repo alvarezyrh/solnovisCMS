@@ -1,0 +1,74 @@
+<%- include('../partials/admin-header', { title: itemConfig.title, active: itemConfig.active, currentUser: currentUser, csrfToken: csrfToken, flash: flash }) %>
+
+<% if (error) { %>
+    <p class="admin-alert error" role="alert"><%= error %></p>
+<% } %>
+
+<section class="admin-panel">
+    <div class="admin-panel-heading">
+        <div><p class="eyebrow">Kelola konten</p><h2><%= itemConfig.title %></h2></div>
+        <a class="admin-button" href="/admin/edit?type=<%= type %>"><%= type === 'profiles' ? 'Tambah akun' : 'Tambah ' + itemConfig.title.toLowerCase() %> +</a>
+    </div>
+    <% if (!rows || rows.length === 0) { %>
+        <p class="admin-muted">Belum ada data untuk ditampilkan.</p>
+    <% } else { %>
+        <div class="admin-table-wrap">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <% if (type === 'menus') { %>
+                            <th>Label</th><th>URL</th><th>Urutan</th><th>Status</th>
+                        <% } else if (type === 'hero_slides') { %>
+                            <th>Judul</th><th>Gambar</th><th>Urutan</th><th>Status</th>
+                        <% } else if (type === 'profiles') { %>
+                            <th>Nama</th><th>Email</th><th>Peran</th><th>Dibuat</th>
+                        <% } else { %>
+                            <th>Judul</th><th>Slug</th><th>Status</th><th>Diperbarui</th>
+                        <% } %>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% rows.forEach(function(row) { %>
+                        <tr>
+                            <% if (type === 'menus') { %>
+                                <td><%= row.title %><%= row.is_cta === 1 ? ' · CTA' : '' %></td>
+                                <td class="admin-url"><%= row.slug %></td>
+                                <td><%= row.sort_order %></td>
+                                <td><%= row.status === 1 ? 'Tampil' : 'Disembunyikan' %></td>
+                            <% } else if (type === 'hero_slides') { %>
+                                <td><strong><%= row.title %></strong><small class="admin-table-subtitle"><%= row.kicker %></small></td>
+                                <td class="admin-url"><%= row.slug %></td>
+                                <td><%= row.sort_order %></td>
+                                <td><%= row.status === 1 ? 'Tampil' : 'Disembunyikan' %></td>
+                            <% } else if (type === 'profiles') { %>
+                                <td><%= row.title %></td>
+                                <td><%= row.slug %></td>
+                                <td><%= row.status ? (row.status.charAt(0).toUpperCase() + row.status.slice(1)) : '' %></td>
+                                <td><%= row.updated_at %></td>
+                            <% } else { %>
+                                <td><%= row.title %><%= type === 'pages' && row.is_home === 1 ? ' · Beranda' : '' %></td>
+                                <td><%= row.slug %></td>
+                                <td><span class="status-badge <%= row.status %>"><%= row.status === 'published' ? 'Terbit' : 'Draft' %></span></td>
+                                <td><%= row.updated_at %></td>
+                            <% } %>
+                            <td class="admin-actions">
+                                <a class="admin-action-link" href="/admin/edit?type=<%= type %>&id=<%= row.id %>">Edit</a>
+                                <% if (type !== 'profiles' || row.id !== currentUser.id) { %>
+                                    <form method="post" action="/admin/manage?type=<%= type %>" onsubmit="return confirm('Hapus item ini?')">
+                                        <input type="hidden" name="csrf_token" value="<%= csrfToken %>">
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="id" value="<%= row.id %>">
+                                        <button class="admin-action-link danger" type="submit">Hapus</button>
+                                    </form>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+</section>
+
+<%- include('../partials/admin-footer') %>

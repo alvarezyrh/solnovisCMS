@@ -1,0 +1,19 @@
+<%- include('partials/site-header', { title: post.title, description: post.excerpt, activeSlug: '', menuItems: menuItems, setting: setting }) %>
+<main>
+    <section class="page-hero section-wrap">
+        <p class="eyebrow">Jurnal Solnovis · <%= formatDate(post.created_at) %></p>
+        <h1><%= post.title %></h1>
+        <p class="page-lead"><%= post.excerpt %></p>
+    </section>
+    <section class="story-section section-wrap dynamic-page-content">
+        <div class="story-art" aria-hidden="true">
+            <span class="story-art-label">LOCAL<br>ROOTS<br><i>GLOBAL<br>REACH</i></span>
+            <span class="story-art-orbit"></span>
+        </div>
+        <div class="story-copy">
+            <%- renderPlainContent(post.content) %>
+            <a class="text-link" href="/posts">Kembali ke jurnal <span aria-hidden="true">→</span></a>
+        </div>
+    </section>
+</main>
+<%- include('partials/site-footer', { setting: setting }) %>
